@@ -7,9 +7,7 @@ local opts = { noremap = true, silent = true } -- Prevent recursive mapping & di
 -- local discipline = require("custom.discipline")
 -- discipline.cowboy()
 
-local float_terminal = require("custom.float_terminal")
-
-keymap.set("n", "<leader>tt", float_terminal.open_floating_term, { desc = "Open floating terminal" })
+keymap.set("n", "<leader>tt", require("custom.float_terminal").open_floating_term, { desc = "Open floating terminal" })
 
 -- =========================
 -- INCREMENT & DECREMENT

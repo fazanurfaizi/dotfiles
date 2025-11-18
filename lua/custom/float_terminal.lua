@@ -19,6 +19,7 @@ function M.open_floating_term()
   local win = vim.api.nvim_open_win(buf, true, opts) -- Open the buffer in a floating window
   local colors = require("solarized-osaka.colors").setup()
 
+  vim.opt.mouse = "a" -- enable mouse in floating terminal
   vim.api.nvim_set_option_value("winhl", "Normal:NormalFloat,FloatBorder:FloatBorder", { win = win }) -- Set window highlights
   vim.api.nvim_set_hl(win, "NormalFloat", { bg = colors.base04, fg = colors.base04 })
   vim.api.nvim_set_hl(win, "FloatBorder", { bg = colors.base04, fg = colors.base03 })
@@ -27,9 +28,11 @@ function M.open_floating_term()
 
   vim.fn.termopen(vim.o.shell, {
     on_exit = function()
+      vim.opt.mouse = "" -- disable mouse before existing floating window
       vim.api.nvim_win_close(win, true) -- Close the floating window when the terminal exits
     end,
   }) -- Start the terminal in the buffer
+
   vim.cmd("startinsert")
 end
 
