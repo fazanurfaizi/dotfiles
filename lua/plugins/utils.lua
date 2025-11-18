@@ -26,4 +26,25 @@ return {
       terminal_text = "Using Terminal",
     },
   },
+  {
+    "gisketch/triforce.nvim",
+    dependencies = {
+      "nvzone/volt",
+    },
+    config = function()
+      require("triforce").setup({
+        enabled = true,
+        gamification_enabled = true,
+        notification = {
+          enabled = true,
+          level_up = true,
+          achievement = true,
+        },
+        auto_save_interval = 300,
+        keymap = {
+          show_profile = "<leader>tp",
+        },
+      })
+    end,
+  },
 }
