@@ -26,3 +26,5 @@ vim.api.nvim_create_autocmd("FileType", {
 require("custom.alembic").alembic_command()
 
 require("custom.manual_root").set_root_command()
+
+require("custom.set_python_docker").set_python_docker()

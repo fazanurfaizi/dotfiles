@@ -21,7 +21,12 @@ return {
       ".git"
     ),
     settings = {
+      run = "onSave",
       workingDirectory = { mode = "auto" },
+    },
+    flags = {
+      debounce_text_changes = 1000,
+      allow_incremental_sync = false,
     },
   },
 }

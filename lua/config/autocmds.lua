@@ -2,11 +2,23 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
--- local create_augroup = vim.api.nvim_create_augroup
--- local create_autocmd = vim.api.nvim_create_autocmd
---
--- create_augroup("file_types", { clear = true })
---
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+local group = augroup("update_title", { clear = true })
+
+vim.opt.title = true
+
+-- Update title automatically when switch projects
+vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " - nvim"
+
+autocmd("DirChanged", {
+  group = group,
+  callback = function()
+    vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " — nvim"
+  end,
+})
+
 -- create_autocmd({ "BufEnter", "BufRead", "BufNewFile" }, {
 --   desc = "Recognize .gemrc as yaml",
 --   group = "file_types",
